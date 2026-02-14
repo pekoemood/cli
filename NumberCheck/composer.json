@@ -1,0 +1,13 @@
+{
+    "name": "shio/number-check",
+    "description": "数当てゲーム",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Shio\\NumberCheck\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^13.0"
+    }
+}
