@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace NumberCheck;
 
-require_once __DIR__ . '/Message.php';
-require_once __DIR__ . '/Input.php';
-require_once __DIR__ . '/Check.php';
+// require_once __DIR__ . '/Message.php';
+// require_once __DIR__ . '/Input.php';
+// require_once __DIR__ . '/Check.php';
 
 class App {
   public function __construct(
@@ -28,11 +28,11 @@ class App {
         continue;
       }
 
-      if ($this->validator->isCorrect($number, $answer)) {
-        $this->message->correctMessage();
+      if ($this->validator->isCorrect($number, (int) $answer)) {
+        $this->message->showCorrect();
         break;
       } else {
-        $this->message->incorrectMessage();
+        $this->message->showIncorrect();
       }    
     }
   }
