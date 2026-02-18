@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 
 class TaskList {
   private array $tasks = [];
-  private int $nextId = 0;
+  private int $nextId = 1;
 
   public function addTask(string $name): void {
     $task = new Task($this->nextId, $name);
@@ -18,5 +19,9 @@ class TaskList {
       }
     }
     throw new RuntimeException('タスクが見つかりません');
+  }
+
+  public function getTasks(): array {
+    return $this->tasks;
   }
 }
