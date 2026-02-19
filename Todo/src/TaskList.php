@@ -1,6 +1,11 @@
 <?php
 declare(strict_types=1);
 
+namespace App;
+
+use RuntimeException;
+use App\Task;
+
 class TaskList {
   private array $tasks = [];
   private int $nextId = 1;
