@@ -5,6 +5,14 @@ namespace App;
 
 class View {
 
+  public function showTasks(TaskList $tasks): string {
+    $array = [];
+    foreach($tasks->getTasks() as $task) {
+      $array[] = $task->getId() . ": " . $task->getTask();
+    }
+    return implode(PHP_EOL, $array);
+  }
+
   public function menuView() {
     system('clear');
     echo '=== Todo app ===' . PHP_EOL;
@@ -22,10 +30,8 @@ class View {
   public function taskListView(TaskList $tasks) {
     system('clear');
     echo '=== Todo Task List ===' . PHP_EOL;
-    foreach($tasks->getTasks() as $task) {
-      echo $task->getId() . ": " . $task->getTask() . PHP_EOL;
-    }
-    echo 'Enterキーで戻る' . PHP_EOL;
+    echo $this->showTasks($tasks) . PHP_EOL;
+    echo 'Enter' . PHP_EOL;
   }
 
   public function deleteTask() {
