@@ -35,11 +35,14 @@ class View {
   }
 
   public function deleteTask() {
-  echo '=== Todo Task List ===' . PHP_EOL;
-  echo '削除するタスク番号を入力してください>';
-}
+    system('clear');
+    echo '=== Todo Task List ===' . PHP_EOL;
+    echo '削除するタスク番号を入力してください> ';
+  }
 
-
+  public function deleteSuccess(string $taskName) {
+    echo "タスク: {$taskName} の削除に成功しました！";
+  }
 
   public function showErrorMessage() {
     echo '無効な入力です' . PHP_EOL;

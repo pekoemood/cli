@@ -17,16 +17,16 @@ class TaskList {
   }
 
   public function deleteTask(int $taskId): void {
-    foreach($this->tasks as $i => $task) {
-      if ($task->getId() === $taskId) {
-        array_splice($this->tasks, $i, 1);
-        return;
-      }
-    }
-    throw new RuntimeException('タスクが見つかりません');
+    $newTaskList = array_filter($this->tasks, fn($task) => $taskId !== $task->getId());
+    $this->tasks = $newTaskList;
   }
 
   public function getTasks(): array {
     return $this->tasks;
+  }
+
+  public function getTaskName(int $taskId): ?string {
+    $tasks = array_filter($this->tasks, fn($task) => $task->getId() === $taskId);
+    return !empty($tasks) ? reset($tasks)->getTask() : null;
   }
 }

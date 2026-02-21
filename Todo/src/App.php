@@ -22,8 +22,18 @@ class App {
 
   public function handleTaskList() {
     $this->view->taskListView($this->taskList);
-    $stop = strtolower(trim(fgets(STDIN)));
+    strtolower(trim(fgets(STDIN)));
   }
+
+  public function handleDeleteTask() {
+    $this->view->deleteTask();
+    $taskId = strtolower(trim((string) fgets(STDIN)));
+    $taskName = $this->taskList->getTaskName((int) $taskId);
+    $this->taskList->deleteTask((int) $taskId);
+    echo $this->view->deleteSuccess($taskName);
+    fgets(STDIN);
+  }
+
 
   public function run() {
     while(true) {
@@ -32,7 +42,7 @@ class App {
       match($input) {
         '1' => $this->handleAddTask(),
         '2' => $this->handleTaskList(),
-        '3' => $this->view->deleteTask(),
+        '3' => $this->handleDeleteTask(),
         default => $this->view->showErrorMessage(),
       };
     }
