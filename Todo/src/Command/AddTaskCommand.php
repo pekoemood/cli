@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Command;
 
-use App\Input;
-use App\TaskList;
-use App\View;
+use App\Presentation\Input;
+use App\Domain\TaskList;
+use App\Presentation\View;
 
 class AddTaskCommand implements CommandInterface
 {

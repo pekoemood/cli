@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Presentation;
+
+use App\Domain\TaskList;
 
 class View
 {

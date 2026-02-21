@@ -2,7 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Application;
+
+use App\Domain\TaskList;
+use App\Presentation\View;
+use App\Presentation\Input;
 
 class AppFactory
 {

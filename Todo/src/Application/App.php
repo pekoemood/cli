@@ -2,11 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Application;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use App\Command\AddTaskCommand;
+use App\Domain\TaskList;
+use App\Presentation\View;
+use App\Presentation\InputInterface;
 
 class App
 {
@@ -39,7 +42,7 @@ class App
     public function run()
     {
         $command = [
-          1 => new AddTaskCommand($this->taskList, $this->view, $this->input),
+            1 => new AddTaskCommand($this->taskList, $this->view, $this->input),
         ];
 
 
