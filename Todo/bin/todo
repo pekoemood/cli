@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . "/../vendor/autoload.php";
+
+use App\Application\AppFactory;
+
+$app = AppFactory::create();
+$app->run();

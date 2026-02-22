@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain;
 
-use App\Task;
+use App\Domain\Task;
 
 class TaskList
 {
@@ -21,7 +21,7 @@ class TaskList
     public function deleteTask(int $taskId): void
     {
         $newTaskList = array_filter($this->tasks, fn ($task) => $taskId !== $task->getId());
-        $this->tasks = $newTaskList;
+        $this->tasks = array_values($newTaskList);
     }
 
     public function getTasks(): array
@@ -29,9 +29,13 @@ class TaskList
         return $this->tasks;
     }
 
-    public function getTaskName(int $taskId): ?string
+    public function getTask(int $taskId): ?Task
     {
-        $tasks = array_filter($this->tasks, fn ($task) => $task->getId() === $taskId);
-        return !empty($tasks) ? reset($tasks)->getTask() : null;
+        foreach ($this->tasks as $task) {
+            if ($task->getId() === $taskId) {
+                return $task;
+            }
+        }
+        return null;
     }
 }

@@ -26,13 +26,13 @@ class Task
         return $this->id;
     }
 
-    public function getTask(): string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getStatus(): string
+    public function getStatus(): Status
     {
-        return $this->status->label();
+        return $this->status;
     }
 }

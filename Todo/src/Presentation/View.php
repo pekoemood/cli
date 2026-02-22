@@ -6,18 +6,18 @@ namespace App\Presentation;
 
 use App\Domain\TaskList;
 
-class View
+class View implements ViewInterface
 {
-    public function showTasks(TaskList $tasks): string
+    private function showTasks(TaskList $tasks): string
     {
         $array = [];
         foreach ($tasks->getTasks() as $task) {
-            $array[] = $task->getId() . ": " . $task->getTask();
+            $array[] = $task->getId() . ": " . $task->getName();
         }
         return implode(PHP_EOL, $array);
     }
 
-    public function menuView()
+    public function menuView(): void
     {
         system('clear');
         echo '=== Todo app ===' . PHP_EOL;
@@ -26,14 +26,14 @@ class View
         echo '3. タスク削除' . PHP_EOL;
     }
 
-    public function addTaskView()
+    public function addTaskView(): void
     {
         system('clear');
         echo '=== Todo Add Task ===' . PHP_EOL;
         echo '追加するタスク名を入力してください>';
     }
 
-    public function taskListView(TaskList $tasks)
+    public function taskListView(TaskList $tasks): void
     {
         system('clear');
         echo '=== Todo Task List ===' . PHP_EOL;
@@ -41,21 +41,20 @@ class View
         echo 'キーを押すとメニューに戻ります ' . PHP_EOL;
     }
 
-    public function deleteTask()
+    public function showDeleteTaskPrompt(): void
     {
         system('clear');
         echo '=== Todo Task List ===' . PHP_EOL;
         echo '削除するタスク番号を入力してください> ';
     }
 
-    public function deleteSuccess(string $taskName)
-    {
-        echo "タスク: {$taskName} の削除に成功しました！" . PHP_EOL;
-        echo 'メニュー画面に戻ります';
-    }
-
-    public function showErrorMessage()
+    public function showErrorMessage(): void
     {
         echo '無効な入力です' . PHP_EOL;
+    }
+
+    public function showTaskNotFound(): void
+    {
+        echo '該当のタスクIDが見つかりませんでした' . PHP_EOL;
     }
 }

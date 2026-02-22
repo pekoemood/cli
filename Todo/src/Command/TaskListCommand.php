@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Command;
 
-use App\Presentation\InputInterface;
 use App\Domain\TaskList;
+use App\Presentation\InputInterface;
 use App\Presentation\ViewInterface;
 
-class AddTaskCommand implements CommandInterface
+class TaskListCommand implements CommandInterface
 {
     public function __construct(
         private TaskList $taskList,
@@ -19,8 +19,7 @@ class AddTaskCommand implements CommandInterface
 
     public function execute(): void
     {
-        $this->view->addTaskView();
-        $taskName = $this->input->readString();
-        $this->taskList->addTask($taskName);
+        $this->view->taskListView($this->taskList);
+        $this->input->waitKey();
     }
 }
